@@ -75,6 +75,10 @@ const postUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = parseInt(req.params.id);
+  if (id !== req.payload.sub) {
+    return res.sendStatus(403);
+  }
+  
   const { firstname, lastname, email, city, language } = req.body;
 
   database
